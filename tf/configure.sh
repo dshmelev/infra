@@ -1,7 +1,7 @@
 #!/bin/bash
 exec > /tmp/configure.log 2>&1
 ETCDCTL_BASE="etcdctl \
-  --ca-file /etc/ssl/5pi-ca.pem \
+  --ca-file /etc/ssl/ca.pem \
   --cert-file /etc/ssl/server.pem \
   --key-file /etc/ssl/server-key.pem"
 ETCDCTL="$ETCDCTL_BASE --endpoints https://$(hostname):2379"
@@ -54,7 +54,7 @@ case "$STATE" in
     ;;
   *)
     echo "State $STATE is invalid, aborting" >&2
-    exit 1 
+    exit 1
 esac
 
 cat <<EOF > /etc/environment.calc
